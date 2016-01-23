@@ -175,10 +175,10 @@ object. One called 'alertHello' which alerts 'hello' and another method called l
 var methodCollection = {
   test: 'this is a test',
   alertHello : function() {
-    alert('Hello');
+    alert('hello');
   },
   logHello : function() {
-    console.log('Hello');
+    console.log('hello');
   }
 };
 
@@ -194,12 +194,12 @@ methodCollection.logHello();
 // Create a function called MakePerson which takes in name, birthday, ssn as its parameters and returns a new object 
 //with all of the information that you passed in.
 
-var MakePerson = function(one, two, three) {
-  var newObj = {};
-  one = newObj.name;
-  two = newObj.birthday;
-  three = newObj.ssn;
-  return newObj;
+var MakePerson = function(name, birthday, ssn) {
+  return {
+  name: name,
+  birthday: birthday,
+  ssn: ssn,
+  }
 }
 
 var working = MakePerson('Paige', 'June', 'nope');
@@ -213,10 +213,16 @@ console.log(working);
 // Create a function called MakeCard which takes in all the data it needs to make a Credit Card object and 
 //returns that object so that whenever you invoke MakeCard, you get a brand new credit card.
 
-var MakeCard = function() {
-
+var MakeCard = function(num, exp, cv) {
+  return {
+    num: num,
+    exp: exp,
+    cv: cv
+  }
 }
-  
+
+var cardnum = MakeCard('9987 9877', 'Dec', 'n876');
+console.log(cardnum); 
   
   
 //NEXT PROBLEM
@@ -228,9 +234,18 @@ var MakeCard = function() {
    Have bindCard merge the two parameters together into a new object which contains all the properties from the person as well as the creditcard.
 */
 
-var bindCard = function() {
-
+var bindCard = function(obj1, obj2) {
+   var newObj = {};
+   for (var key in obj1) {
+      newObj[key] = obj1[key];
+   }
+   for (var key in obj2){
+    newObj[key] = obj2[key];
+   }
+   return newObj;
 }
+
+bindCard(working, cardnum);
 
 
 //
